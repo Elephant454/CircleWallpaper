@@ -63,7 +63,7 @@
                     totalGreen += parseInt(getGreen(colors[i]), 16);
                     totalBlue += parseInt(getBlue(colors[i]), 16);
                 }
-                return("#" + (totalRed/colors.length).toString(16) + (totalGreen/colors.length).toString(16) + (totalBlue/colors.length).toString(16));
+                return("#" + Math.round(totalRed/colors.length).toString(16) + Math.round(totalGreen/colors.length).toString(16) + Math.round(totalBlue/colors.length).toString(16));
             }
 
             var change=32;
@@ -88,7 +88,7 @@
 
             average = averageColor([averageColor(colors), "#ffffff"]);
 
-            ctx.fillStyle = averageColor;
+            ctx.fillStyle = average;
             ctx.fillRect(0, 0, width, height);
 
             for(var size=6; size<8; size++){
