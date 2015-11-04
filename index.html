@@ -76,16 +76,6 @@
             var color6 = varyColor(color5, change);
             var colors = [color0, color1, color2, color3, color4, color5, color6];
 
-            //var averageRed = ((parseInt(getRed(color0), 16) + parseInt(getRed(color1), 16) + parseInt(getRed(color2), 16) + parseInt(getRed(color3), 16) + parseInt(getRed(color4), 16) + parseInt(getRed(color5), 16) + parseInt(getRed(color6), 16)) / 7).toString(16); //the average red value of all of the generated colors
-            //var averageGreen = ((parseInt(getGreen(color0), 16) + parseInt(getGreen(color1), 16) + parseInt(getGreen(color2), 16) + parseInt(getGreen(color3), 16) + parseInt(getGreen(color4), 16) + parseInt(getGreen(color5), 16) + parseInt(getGreen(color6), 16)) / 7).toString(16); //the average green value of all of the generated colors
-            //var averageBlue = ((parseInt(getBlue(color0), 16) + parseInt(getBlue(color1), 16) + parseInt(getBlue(color2), 16) + parseInt(getBlue(color3), 16) + parseInt(getBlue(color4), 16) + parseInt(getBlue(color5), 16) + parseInt(getBlue(color6), 16)) / 7).toString(16); //the average blue value of all of the generated colors
-            
-            //var whitedRed = ((parseInt(averageRed, 16) + 255)/2).toString(16); //the average red mixed with white
-            //var whitedGreen = ((parseInt(averageRed, 16) + 255)/2).toString(16); //the average green mixed with white
-            //var whitedBlue = ((parseInt(averageRed, 16) + 255)/2).toString(16); //the average blue mixed with white
-
-            //averageColor = "#" + whitedRed + whitedGreen + whitedBlue; //the final average color of all of the generated colors, mixed with white
-
             average = averageColor([averageColor(colors), "#ffffff"]);
 
             ctx.fillStyle = average;
