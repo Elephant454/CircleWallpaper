@@ -46,7 +46,7 @@
 
             //flips the red and blue values of a color
             function flipRedBlue(color){
-                return("#" + getRed(color) + getGreen(color) + getBlue(color));
+                return("#" + getBlue(color) + getGreen(color) + getRed(color));
             }
 
             //produces a color where the red, green, and blue can change up to +/- change
@@ -67,7 +67,7 @@
                 return("#" + Math.round(totalRed/colors.length).toString(16) + Math.round(totalGreen/colors.length).toString(16) + Math.round(totalBlue/colors.length).toString(16));
             }
 
-            var change=32;
+            var change=64;
             var color0 = generateColor();
             var color1 = flipRedBlue(color0)
             var color2 = varyColor(color1, change);
