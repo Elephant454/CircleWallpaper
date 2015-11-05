@@ -12,14 +12,14 @@
 
         <table>
             <tr>
-                <td>Starting Size: <input type="text" id="startingSizeText"></td>
-                <td>Ending Size: <input type="text" id="endingSizeText"></td>
+                <td>Starting Size: <input type="text" id="startingSizeText" value="6"></td>
+                <td>Ending Size: <input type="text" id="endingSizeText" value="8"></td>
             </tr>
             <tr>
-                <td>Variance: <input type="text" id="varianceText"></td>
+                <td>Variance: <input type="text" id="varianceText" value="64"></td>
             </tr>
             <tr>
-                <td><input type="button" onClick="submit()" value="Generate Wallpaper"></td>
+                <td><input type="button" onClick="generate()" value="Generate Wallpaper"></td>
             </tr>
         </table>
 
@@ -85,37 +85,40 @@
                 return("#" + Math.round(totalRed/colors.length).toString(16) + Math.round(totalGreen/colors.length).toString(16) + Math.round(totalBlue/colors.length).toString(16));
             }
 
-            var change=64;
-            var color0 = generateColor();
-            var color1 = flipRedBlue(color0)
-            var color2 = varyColor(color1, change);
-            var color3 = flipRedBlue(color2);
-            var color4 = varyColor(color3, change);
-            var color5 = flipRedBlue(color4);
-            var color6 = varyColor(color5, change);
-            var colors = [color0, color1, color2, color3, color4, color5, color6];
+            function generate(){
+                var startingSize=parseInt(document.getElementById('startingSizeText').value);
+                var endingSize=parseInt(document.getElementById('endingSizeText').value);
+                var change=parseInt(document.getElementById('varianceText').value);
+                var color0 = generateColor();
+                var color1 = flipRedBlue(color0)
+                var color2 = varyColor(color1, change);
+                var color3 = flipRedBlue(color2);
+                var color4 = varyColor(color3, change);
+                var color5 = flipRedBlue(color4);
+                var color6 = varyColor(color5, change);
+                var colors = [color0, color1, color2, color3, color4, color5, color6];
 
-            average = averageColor([averageColor(colors), "#ffffff"]);
-            ctx.fillStyle = average;
-            ctx.fillRect(0, 0, width, height);
+                average = averageColor([averageColor(colors), "#ffffff"]);
+                ctx.fillStyle = average;
+                ctx.fillRect(0, 0, width, height);
 
-            for(var size=6; size<8; size++){
-                for(var y=size; y<height; y+=size*2){
-                    for(var x=size; x<width; x+=size*2){
-                        ctx.beginPath();
-                        ctx.arc(x, y, size, 0, 2*Math.PI);
-                        if(steps<6){
-                            steps++;
-                        }else{
-                            steps=0;
+                for(var size=startingSize; size<endingSize+1; size++){
+                    for(var y=size; y<height; y+=size*2){
+                        for(var x=size; x<width; x+=size*2){
+                            ctx.beginPath();
+                            ctx.arc(x, y, size, 0, 2*Math.PI);
+                            if(steps<6){
+                                steps++;
+                            }else{
+                                steps=0;
+                            }
+                            ctx.strokeStyle=colors[steps];
+                            ctx.fillStyle=colors[steps];
+                            ctx.stroke();
                         }
-                        ctx.strokeStyle=colors[steps];
-                        ctx.fillStyle=colors[steps];
-                        ctx.stroke();
                     }
                 }
             }
-
         </script>
     </body>
 </html>
