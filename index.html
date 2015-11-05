@@ -24,12 +24,15 @@
             //var color6 = "#" + Math.random().toString(16).slice(2, 8);
             //var colors = [color0, color1, color2, color3, color4, color5, color6];
 
+            //gets the red of a color
             function getRed(color){
                 return(color.slice(1,3));
             }
+            //gets the green of a color
             function getGreen(color){
                 return(color.slice(3,5));
             }
+            //gets the blue of a color
             function getBlue(color){
                 return(color.slice(5,7));
             }
@@ -73,7 +76,6 @@
             var colors = [color0, color1, color2, color3, color4, color5, color6];
 
             average = averageColor([averageColor(colors), "#ffffff"]);
-
             ctx.fillStyle = average;
             ctx.fillRect(0, 0, width, height);
 
