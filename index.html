@@ -89,11 +89,12 @@
                 return("#" + Math.round(totalRed/colors.length).toString(16) + Math.round(totalGreen/colors.length).toString(16) + Math.round(totalBlue/colors.length).toString(16));
             }
 
+
             function submit(){
                 var startingSize=parseInt(document.getElementById('startingSizeText').value);
                 var endingSize=parseInt(document.getElementById('endingSizeText').value);
                 var variance=parseInt(document.getElementById('varianceText').value);
-                var generationType=parseInt(document.getElementById('instantlyRadio').checked);
+                var generationType=document.getElementById('instantlyRadio').checked;
 
                 var color0 = generateColor();
                 var color1 = flipRedBlue(color0)
@@ -104,7 +105,18 @@
                 var color6 = varyColor(color5, variance);
                 var colors = [color0, color1, color2, color3, color4, color5, color6];
 
-                if(generationType) generateInstantly(colors, startingSize, endingSize);
+                if(generationType){
+                    generateInstantly(colors, startingSize, endingSize);
+                }else{
+                    average = averageColor([averageColor(colors), "#ffffff"]);
+                    ctx.fillStyle = average;
+                    ctx.fillRect(0, 0, width, height);
+
+                    var size=startingSize;
+                    var x=size;
+                    var y=size;
+                    var graduallyGenerating = setInterval("generateGradually(colors)", 1);
+                }
             }
 
             function generateInstantly(colors, startingSize, endingSize){
@@ -129,6 +141,33 @@
                     }
                 }
             }
+
+            function generateGradually(colors){
+                ctx.beginPath();
+                if(steps<6) steps++;
+                else steps=0;
+                ctx.strokeStyle=colors[steps];
+                ctx.arc(x, y, size, 0, 2*Math.PI);
+                ctx.stroke();
+                
+                if(x<width){
+                    x+=size;
+                }else{
+                    x=0;
+                    if(y<height){
+                        y+=size;
+                    }else{
+                        y=0;
+                        if(size<endingSize+1){
+                            size++;
+                        }else{
+                            alert("Wallpaper Generation Complete!");
+                            clearInterval(graduallyGenerating);
+                        }
+                    }
+                }
+            }
+
         </script>
     </body>
 </html>
