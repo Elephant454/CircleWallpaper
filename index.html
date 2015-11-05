@@ -19,7 +19,7 @@
                 <td>Variance: <input type="text" id="varianceText" value="64"></td>
             </tr>
             <tr>
-                <td><input type="button" onClick="generate()" value="Generate Wallpaper"></td>
+                <td><input type="button" onClick="submit()" value="Generate Wallpaper"></td>
             </tr>
         </table>
 
@@ -68,8 +68,8 @@
             }
 
             //produces a color where the red, green, and blue can change up to +/- change
-            function varyColor(color, change){
-                return("#" + ((parseInt(getRed(color), 16)-change)+(Math.floor(Math.random()*change*2))).toString(16) + ((parseInt(getGreen(color), 16)-change)+(Math.floor(Math.random()*change*2))).toString(16)+ ((parseInt(getBlue(color), 16)-change)+(Math.floor(Math.random()*change*2))).toString(16)); 
+            function varyColor(color, variance){
+                return("#" + ((parseInt(getRed(color), 16)-variance)+(Math.floor(Math.random()*variance*2))).toString(16) + ((parseInt(getGreen(color), 16)-variance)+(Math.floor(Math.random()*variance*2))).toString(16)+ ((parseInt(getBlue(color), 16)-variance)+(Math.floor(Math.random()*variance*2))).toString(16)); 
             }
 
             //determine the average color of an array of colors
@@ -85,17 +85,17 @@
                 return("#" + Math.round(totalRed/colors.length).toString(16) + Math.round(totalGreen/colors.length).toString(16) + Math.round(totalBlue/colors.length).toString(16));
             }
 
-            function generate(){
+            function submit(){
                 var startingSize=parseInt(document.getElementById('startingSizeText').value);
                 var endingSize=parseInt(document.getElementById('endingSizeText').value);
-                var change=parseInt(document.getElementById('varianceText').value);
+                var variance=parseInt(document.getElementById('varianceText').value);
                 var color0 = generateColor();
                 var color1 = flipRedBlue(color0)
-                var color2 = varyColor(color1, change);
+                var color2 = varyColor(color1, variance);
                 var color3 = flipRedBlue(color2);
-                var color4 = varyColor(color3, change);
+                var color4 = varyColor(color3, variance);
                 var color5 = flipRedBlue(color4);
-                var color6 = varyColor(color5, change);
+                var color6 = varyColor(color5, variance);
                 var colors = [color0, color1, color2, color3, color4, color5, color6];
 
                 average = averageColor([averageColor(colors), "#ffffff"]);
