@@ -3,6 +3,26 @@
         <title>CircleWallpaper</title>
     </head>
     <body>
+        <style>
+            table, th, td{
+                text-align: center;
+                padding: 10px;
+            }
+        </style>
+
+        <table>
+            <tr>
+                <td>Starting Size: <input type="text" id="startingSizeText"></td>
+                <td>Ending Size: <input type="text" id="endingSizeText"></td>
+            </tr>
+            <tr>
+                <td>Variance: <input type="text" id="varianceText"></td>
+            </tr>
+            <tr>
+                <td><input type="button" onClick="submit()" value="Generate Wallpaper"></td>
+            </tr>
+        </table>
+
         <canvas id="canv" width="1" height="1" style="border:1px solid #d3d3d3;">Canvas failed to load. Does your browser support HTML5 and Javascript?</canvas>
         <script>
             var canv = document.getElementById('canv');
