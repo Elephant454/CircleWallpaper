@@ -61,6 +61,17 @@
                 return(color.slice(5,7));
             }
 
+            function rgbToHsv(color){
+                r = getRed(color);
+                g = getGreen(color);
+                b = getBlue(color);
+                var min = Math.min(r, Math.min(g, b)); //smallest value out of red, green, and blue
+                var max = Math.max(r, Math.max(g, b)); //largest value out of red, green, and blue
+
+                if(min == max) return([0, 0, min]); //if the color is white, black, or grey
+
+            }
+
             //produces a random color
             function generateColor(){
                 return("#" + Math.random().toString(16).slice(2, 8)); 
