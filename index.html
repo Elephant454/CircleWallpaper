@@ -24,10 +24,12 @@
             </tr>
             <tr>
                 <td><input type="button" onClick="submit()" value="Generate Wallpaper"></td>
+                <td><input type="button" onClick="reset()" value="Reset"></td>
             </tr>
         </table>
 
         <canvas id="canv" width="1" height="1" style="border:1px solid #d3d3d3;">Canvas failed to load. Does your browser support HTML5 and Javascript?</canvas>
+
         <script>
             var canv = document.getElementById('canv');
             var steps = 0;
@@ -47,6 +49,13 @@
             //var color5 = "#" + color0.slice(1, 3) + color0.slice(5, 7) + color0.slice(3, 5);
             //var color6 = "#" + Math.random().toString(16).slice(2, 8);
             //var colors = [color0, color1, color2, color3, color4, color5, color6];
+
+            function reset(){
+                document.getElementById("startingSizeText").value="6";
+                document.getElementById("endingSizeText").value="8";
+                document.getElementById("varianceText").value="64";
+                document.getElementById("instantlyRadio").checked=true;
+            }
 
             //gets the red of a color
             function getRed(color){
