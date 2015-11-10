@@ -139,11 +139,10 @@
                 if(generationType){
                     generateInstantly(colors, startingSize, endingSize);
                 }else{
-
                     var size=startingSize;
                     var x=size;
                     var y=size;
-                    var graduallyGenerating = setInterval("generateGradually(colors)", 1);
+                    var graduallyGenerating = window.setInterval(generateGradually(colors), 1);
                 }
             }
 
@@ -167,12 +166,6 @@
             }
 
             function generateGradually(colors){
-                ctx.beginPath();
-                if(steps<6) steps++;
-                else steps=0;
-                ctx.strokeStyle=colors[steps];
-                ctx.arc(x, y, size, 0, 2*Math.PI);
-                ctx.stroke();
                 
                 if(x<width){
                     x+=size;
@@ -190,6 +183,13 @@
                         }
                     }
                 }
+
+                ctx.beginPath();
+                if(steps<6) steps++;
+                else steps=0;
+                ctx.strokeStyle=colors[steps];
+                ctx.arc(x, y, size, 0, 2*Math.PI);
+                ctx.stroke();
             }
 
         </script>
