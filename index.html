@@ -132,12 +132,13 @@
                 var color6 = varyColor(color5, variance);
                 var colors = [color0, color1, color2, color3, color4, color5, color6];
 
+                average = averageColor([averageColor(colors), "#ffffff"]);
+                ctx.fillStyle = average;
+                ctx.fillRect(0, 0, width, height);
+
                 if(generationType){
                     generateInstantly(colors, startingSize, endingSize);
                 }else{
-                    average = averageColor([averageColor(colors), "#ffffff"]);
-                    ctx.fillStyle = average;
-                    ctx.fillRect(0, 0, width, height);
 
                     var size=startingSize;
                     var x=size;
@@ -147,10 +148,6 @@
             }
 
             function generateInstantly(colors, startingSize, endingSize){
-                average = averageColor([averageColor(colors), "#ffffff"]);
-                ctx.fillStyle = average;
-                ctx.fillRect(0, 0, width, height);
-
                 for(var size=startingSize; size<endingSize+1; size++){
                     for(var y=size; y<height; y+=size*2){
                         for(var x=size; x<width; x+=size*2){
