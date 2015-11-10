@@ -23,6 +23,10 @@
                 <td>Generate gradually: <input type="radio" name="generationType" id="graduallyRadio"></td>
             </tr>
             <tr>
+                <td>Width: <input type="text" id="widthText" value="1"></td>
+                <td>Height: <input type="text" id="heightText" value="1"></td>
+            </tr>
+            <tr>
                 <td><input type="button" onClick="submit()" value="Generate Wallpaper"></td>
                 <td><input type="button" onClick="reset()" value="Reset"></td>
             </tr>
@@ -31,14 +35,10 @@
         <canvas id="canv" width="1" height="1" style="border:1px solid #d3d3d3;">Canvas failed to load. Does your browser support HTML5 and Javascript?</canvas>
 
         <script>
+            document.getElementById('widthText').value = window.innerWidth;
+            document.getElementById('heightText').value = window.innerHeight;
             var canv = document.getElementById('canv');
             var steps = 0;
-            width = window.innerWidth;
-            height = window.innerHeight;
-            //width = 1920;
-            //height = 1080;
-            canv.width = width;
-            canv.height = height;
             ctx = canv.getContext("2d");
 
             //var color0 = "#" + Math.random().toString(16).slice(2, 8);
@@ -55,6 +55,8 @@
                 document.getElementById("endingSizeText").value="8";
                 document.getElementById("varianceText").value="64";
                 document.getElementById("instantlyRadio").checked=true;
+                document.getElementById('widthText').value = window.innerWidth;
+                document.getElementById('heightText').value = window.innerHeight;
             }
 
             //gets the red of a color
@@ -111,6 +113,11 @@
 
 
             function submit(){
+                width = parseInt(document.getElementById('widthText').value);
+                height = parseInt(document.getElementById('heightText').value);
+                canv.width = width;
+                canv.height = height;
+
                 var startingSize=parseInt(document.getElementById('startingSizeText').value);
                 var endingSize=parseInt(document.getElementById('endingSizeText').value);
                 var variance=parseInt(document.getElementById('varianceText').value);
