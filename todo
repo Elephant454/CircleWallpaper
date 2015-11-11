@@ -1,3 +1,4 @@
-add LICENSE.md
-add .gitignore
+add LICENSE.md (something from GNU?)
+add .gitignore (no idea what this is XD)
 toggle hiding of controls (using style="display: none;" ?)
+add controls for allowing the user to have a ton of control over how a colorscheme is selected (radio buttons for whether it should flip colors from a previous color, vary from a color by a per-color variance, true complementary colors, "add to white" complementary colors, etc.)
