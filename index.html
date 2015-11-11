@@ -120,8 +120,9 @@
             var y;
             var gradualGenerationInterval;
 
-
             function submit(){
+                window.clearInterval(gradualGenerationInterval); //just to be certain that it isn't gradually generating. It should start over, if that's the case.
+
                 width = parseInt(document.getElementById('widthText').value);
                 height = parseInt(document.getElementById('heightText').value);
                 canv.width = width;
@@ -190,10 +191,10 @@
                         y+=size;
                     }else{
                         y=0;
-                        if(size<endingSize+1){
+                        if(size<endingSize){
                             size++;
                         }else{
-                            alert("Wallpaper Generation Complete!");
+                            alert("Wallpaper generation complete!");
                             window.clearInterval(gradualGenerationInterval);
                         }
                     }
