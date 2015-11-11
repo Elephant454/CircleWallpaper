@@ -110,6 +110,15 @@
                 }
                 return("#" + Math.round(totalRed/colors.length).toString(16) + Math.round(totalGreen/colors.length).toString(16) + Math.round(totalBlue/colors.length).toString(16));
             }
+            
+            var width;
+            var height;
+            var size;
+            var startingSize;
+            var endingSize;
+            var x;
+            var y;
+            var gradualGenerationInterval;
 
 
             function submit(){
@@ -118,8 +127,8 @@
                 canv.width = width;
                 canv.height = height;
 
-                var startingSize=parseInt(document.getElementById('startingSizeText').value);
-                var endingSize=parseInt(document.getElementById('endingSizeText').value);
+                startingSize=parseInt(document.getElementById('startingSizeText').value);
+                endingSize=parseInt(document.getElementById('endingSizeText').value);
                 var variance=parseInt(document.getElementById('varianceText').value);
                 var generationType=document.getElementById('instantlyRadio').checked;
 
@@ -130,26 +139,26 @@
                 var color4 = varyColor(color3, variance);
                 var color5 = flipRedBlue(color4);
                 var color6 = varyColor(color5, variance);
-                var colors = [color0, color1, color2, color3, color4, color5, color6];
+                colors = [color0, color1, color2, color3, color4, color5, color6];
 
                 average = averageColor([averageColor(colors), "#ffffff"]);
                 ctx.fillStyle = average;
                 ctx.fillRect(0, 0, width, height);
 
                 if(generationType){
-                    generateInstantly(colors, startingSize, endingSize);
+                    generateInstantly();
                 }else{
-                    var size=startingSize;
-                    var x=size;
-                    var y=size;
-                    var graduallyGenerating = window.setInterval(generateGradually(colors), 1);
+                    size=startingSize;
+                    x=size;
+                    y=size;
+                    gradualGenerationInterval = window.setInterval('generateGradually()', 0);
                 }
             }
 
-            function generateInstantly(colors, startingSize, endingSize){
-                for(var size=startingSize; size<endingSize+1; size++){
-                    for(var y=size; y<height; y+=size*2){
-                        for(var x=size; x<width; x+=size*2){
+            function generateInstantly(){
+                for(size=startingSize; size<endingSize+1; size++){
+                    for(y=size; y<height; y+=size*2){
+                        for(x=size; x<width; x+=size*2){
                             ctx.beginPath();
                             ctx.arc(x, y, size, 0, 2*Math.PI);
                             if(steps<6){
@@ -165,8 +174,14 @@
                 }
             }
 
-            function generateGradually(colors){
-                
+            function generateGradually(){
+                ctx.beginPath();
+                if(steps<6) steps++;
+                else steps=0;
+                ctx.strokeStyle=colors[steps];
+                ctx.arc(x, y, size, 0, 2*Math.PI);
+                ctx.stroke();
+
                 if(x<width){
                     x+=size;
                 }else{
@@ -179,17 +194,10 @@
                             size++;
                         }else{
                             alert("Wallpaper Generation Complete!");
-                            clearInterval(graduallyGenerating);
+                            clearInterval(gradualGenerationInterval);
                         }
                     }
                 }
-
-                ctx.beginPath();
-                if(steps<6) steps++;
-                else steps=0;
-                ctx.strokeStyle=colors[steps];
-                ctx.arc(x, y, size, 0, 2*Math.PI);
-                ctx.stroke();
             }
 
         </script>
