@@ -1,4 +1,6 @@
 add LICENSE.md (something from GNU?)
 add .gitignore (no idea what this is XD)
+fix bug in gradual generation: colors don't stagger in certain conditions.
+    test case: startingSize=4, endingSize=4, width=49, height=256
 toggle hiding of controls (using style="display: none;" ?)
 add controls for allowing the user to have a ton of control over how a colorscheme is selected (radio buttons for whether it should flip colors from a previous color, vary from a color by a per-color variance, true complementary colors, "add to white" complementary colors, etc.)
