@@ -21,6 +21,7 @@
             <tr>
                 <td>Generate instantly: <input type="radio" name="generationType" id="instantlyRadio" checked></td>
                 <td>Generate gradually: <input type="radio" name="generationType" id="graduallyRadio"></td>
+                <td>Generate semi-gradually: <input type="radio" name="generationType" id="semiGraduallyRadio"></td>
             </tr>
             <tr>
                 <td>Width: <input type="text" id="widthText" value="1"></td>
@@ -131,7 +132,9 @@
                 startingSize=parseInt(document.getElementById('startingSizeText').value);
                 endingSize=parseInt(document.getElementById('endingSizeText').value);
                 var variance=parseInt(document.getElementById('varianceText').value);
-                var generationType=document.getElementById('instantlyRadio').checked;
+                if(document.getElementById('instantlyRadio').checked) var generationType=0;
+                if(document.getElementById('graduallyRadio').checked) var generationType=1;
+                if(document.getElementById('semiGraduallyRadio').checked) var generationType=2;
 
                 var color0 = generateColor();
                 var color1 = flipRedBlue(color0)
@@ -146,13 +149,18 @@
                 ctx.fillStyle = average;
                 ctx.fillRect(0, 0, width, height);
 
-                if(generationType){
+                if(generationType==0){
                     generateInstantly();
-                }else{
+                }else if(generationType==1){
                     size=startingSize;
                     x=size;
                     y=size;
                     gradualGenerationInterval = window.setInterval('generateGradually()', 0);
+                }else if(generationType==2){
+                    size=startingSize;
+                    x=size;
+                    y=size;
+                    gradualGenerationInterval = window.setInterval('generateSemiGradually()', 0);
                 }
             }
 
@@ -197,6 +205,28 @@
                             alert("Wallpaper generation complete!");
                             window.clearInterval(gradualGenerationInterval);
                         }
+                    }
+                }
+            }
+
+            function generateSemiGradually(){
+                if(y<height){
+                    for(x=size; x<width; x+=size){
+                        ctx.beginPath();
+                        if(steps<6) steps++;
+                        else steps=0;
+                        ctx.strokeStyle=colors[steps];
+                        ctx.arc(x, y, size, 0, 2*Math.PI);
+                        ctx.stroke();
+                    }
+                    y+=size;
+                }else{
+                    y=0;
+                    if(size<endingSize){
+                        size++;
+                    }else{
+                        alert("Wallpaper generation complete!");
+                        Window.clearInterval(gradualGenerationInterval);
                     }
                 }
             }
