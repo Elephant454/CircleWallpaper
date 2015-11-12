@@ -185,20 +185,20 @@
 
             function generateGradually(){
                 ctx.beginPath();
+                ctx.arc(x, y, size, 0, 2*Math.PI);
                 if(steps<6) steps++;
                 else steps=0;
                 ctx.strokeStyle=colors[steps];
-                ctx.arc(x, y, size, 0, 2*Math.PI);
                 ctx.stroke();
 
                 if(x<width){
-                    x+=size;
+                    x+=size*2;
                 }else{
-                    x=0;
+                    x=size;
                     if(y<height){
-                        y+=size;
+                        y+=size*2;
                     }else{
-                        y=0;
+                        y=size;
                         if(size<endingSize){
                             size++;
                         }else{
@@ -211,17 +211,17 @@
 
             function generateSemiGradually(){
                 if(y<height){
-                    for(x=size; x<width; x+=size){
+                    for(x=size; x<width; x+=size*2){
                         ctx.beginPath();
+                        ctx.arc(x, y, size, 0, 2*Math.PI);
                         if(steps<6) steps++;
                         else steps=0;
                         ctx.strokeStyle=colors[steps];
-                        ctx.arc(x, y, size, 0, 2*Math.PI);
                         ctx.stroke();
                     }
-                    y+=size;
+                    y+=size*2;
                 }else{
-                    y=0;
+                    y=size;
                     if(size<endingSize){
                         size++;
                     }else{
