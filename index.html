@@ -34,6 +34,12 @@
                 </tr>
             </table>
         </div>
+        <div id="colorControlsDiv" style="display: inline">
+            <br>
+            Number of colors: <input type="text" id="numberOfColorsText" value="7"> <input type="button" onClick="setNumberOfColors()" value="Set">
+            <table id="colorControlsTable">
+            </table>
+        </div>
         <br>
 
         <canvas id="canv" width="1" height="1" style="border:1px solid #d3d3d3;">Canvas failed to load. Does your browser support HTML5 and Javascript?</canvas>
@@ -44,6 +50,19 @@
             var canv = document.getElementById('canv');
             var steps = 0;
             ctx = canv.getContext("2d");
+
+            var numberOfColors;
+            function setNumberOfColors(){
+                numberOfColors = parseInt(document.getElementById('numberOfColorsText').value);
+
+                var colorControlsTable = document.getElementById('colorControlsTable');
+                colorControlsTable.innerHTML="";
+                for(i=0; i<numberOfColors; i++){
+                    colorControlsTable.insertRow(i);
+                    colorControlsTable.rows[i].insertCell(0);
+                    colorControlsTable.rows[i].cells[0].innerHTML = "color" + i;
+                }
+            }
 
             function toggleControls(){
                 var controlsDiv = document.getElementById('controlsDiv');
