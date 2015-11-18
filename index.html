@@ -43,12 +43,15 @@
                 <tr>
                     <td>color0</td>
                     <td>
-                        <select onchange="setColorAction(0)">
+                        <select>
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
                             <option value="varyColor">Vary from Previous Color</option>
                             <option value="flipRGB">Flip RGB Values</option>
                         </select>
+                    </td>
+                    <td>
+                        <input type="text" id="color0Text">
                     </td>
                 </tr>
                 <tr>
@@ -61,6 +64,9 @@
                             <option value="flipRGB">Flip RGB Values</option>
                         </select>
                     </td>
+                    <td>
+                        <input type="text" id="color1Text">
+                    </td>
                 </tr>
                 <tr>
                     <td>color2</td>
@@ -71,6 +77,9 @@
                             <option value="varyColor">Vary from Previous Color</option>
                             <option value="flipRGB">Flip RGB Values</option>
                         </select>
+                    </td>
+                    <td>
+                        <input type="text" id="color2Text">
                     </td>
                 </tr>
                 <tr>
@@ -83,6 +92,9 @@
                             <option value="flipRGB">Flip RGB Values</option>
                         </select>
                     </td>
+                    <td>
+                        <input type="text" id="color3Text">
+                    </td>
                 </tr>
                 <tr>
                     <td>color4</td>
@@ -93,6 +105,9 @@
                             <option value="varyColor">Vary from Previous Color</option>
                             <option value="flipRGB">Flip RGB Values</option>
                         </select>
+                    </td>
+                    <td>
+                        <input type="text" id="color4Text">
                     </td>
                 </tr>
                 <tr>
@@ -105,6 +120,9 @@
                             <option value="flipRGB">Flip RGB Values</option>
                         </select>
                     </td>
+                    <td>
+                        <input type="text" id="color5Text">
+                    </td>
                 </tr>
                 <tr>
                     <td>color6</td>
@@ -115,6 +133,9 @@
                             <option value="varyColor">Vary from Previous Color</option>
                             <option value="flipRGB">Flip RGB Values</option>
                         </select>
+                    </td>
+                    <td>
+                        <input type="text" id="color6Text">
                     </td>
                 </tr>
             </table>
@@ -147,7 +168,6 @@
                         colorControlsTable.rows[i].insertCell(1);
                         colorControlsTable.rows[i].cells[1].appendChild(document.createElement("select"));
                         colorControlsTable.rows[i].cells[1].children[0].id = "color" + i + "Select";
-                        colorControlsTable.rows[i].cells[1].children[0].onchange = function(){setColorAction(i)};
 
                         colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
                         colorControlsTable.rows[i].cells[1].children[0].children[0].value = "randomColor";
@@ -165,6 +185,10 @@
                         colorControlsTable.rows[i].cells[1].children[0].children[3].value = "flipRGB";
                         colorControlsTable.rows[i].cells[1].children[0].children[3].appendChild(document.createTextNode("Flip RGB Values"));
 
+                        colorControlsTable.rows[i].insertCell(2);
+                        colorControlsTable.rows[i].cells[2].appendChild(document.createElement("input"));
+                        colorControlsTable.rows[i].cells[2].children[0].children[0].type = "text";
+                        colorControlsTable.rows[i].cells[2].children[0].id = "color" + i + "Text";
                     }
                 }else if(colorControlsTable.rows.length > numberOfColors){
                     while(colorControlsTable.rows.length > numberOfColors){
@@ -172,10 +196,6 @@
                     }
                 }
 
-            }
-
-            function setColorAction(i){
-                alert(i);
             }
 
             function toggleControls(){
