@@ -43,7 +43,7 @@
                 <tr>
                     <td>color0</td>
                     <td>
-                        <select>
+                        <select onchange="setColorAction(0)">
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
                             <option value="varyColor">Vary from Previous Color</option>
@@ -147,6 +147,7 @@
                         colorControlsTable.rows[i].insertCell(1);
                         colorControlsTable.rows[i].cells[1].appendChild(document.createElement("select"));
                         colorControlsTable.rows[i].cells[1].children[0].id = "color" + i + "Select";
+                        colorControlsTable.rows[i].cells[1].children[0].onchange = function(){setColorAction(i)};
 
                         colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
                         colorControlsTable.rows[i].cells[1].children[0].children[0].value = "randomColor";
@@ -171,6 +172,10 @@
                     }
                 }
 
+            }
+
+            function setColorAction(i){
+                alert(i);
             }
 
             function toggleControls(){
