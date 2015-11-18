@@ -61,9 +61,32 @@
                 var colorControlsTable = document.getElementById('colorControlsTable');
                 if(colorControlsTable.rows.length < numberOfColors){
                     for(i=colorControlsTable.rows.length; i<numberOfColors; i++){
+                        //insert rows
                         colorControlsTable.insertRow(i);
                         colorControlsTable.rows[i].insertCell(0);
                         colorControlsTable.rows[i].cells[0].innerHTML = "color" + i;
+
+                        //insert first column, and the select box for it 
+                        colorControlsTable.rows[i].insertCell(1);
+                        colorControlsTable.rows[i].cells[1].appendChild(document.createElement("select"));
+                        colorControlsTable.rows[i].cells[1].children[0].id = "color" + i + "Select";
+
+                        colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
+                        colorControlsTable.rows[i].cells[1].children[0].children[0].value = "randomColor";
+                        colorControlsTable.rows[i].cells[1].children[0].children[0].appendChild(document.createTextNode("Generate Random Color"));
+
+                        colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
+                        colorControlsTable.rows[i].cells[1].children[0].children[1].value = "provideColor";
+                        colorControlsTable.rows[i].cells[1].children[0].children[1].appendChild(document.createTextNode("Provide a Color"));
+
+                        colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
+                        colorControlsTable.rows[i].cells[1].children[0].children[2].value = "varyColor";
+                        colorControlsTable.rows[i].cells[1].children[0].children[2].appendChild(document.createTextNode("Vary from Previous Color"));
+
+                        colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
+                        colorControlsTable.rows[i].cells[1].children[0].children[3].value = "flipRGB";
+                        colorControlsTable.rows[i].cells[1].children[0].children[3].appendChild(document.createTextNode("Flip RGB Values"));
+
                     }
                 }else if(colorControlsTable.rows.length > numberOfColors){
                     while(colorControlsTable.rows.length > numberOfColors){
@@ -71,27 +94,6 @@
                     }
                 }
 
-                for(i=0; i<numberOfColors; i++){
-                    colorControlsTable.rows[i].insertCell(1);
-                    colorControlsTable.rows[i].cells[1].appendChild(document.createElement("select"));
-                    colorControlsTable.rows[i].cells[1].children[0].id = "color" + i + "Select";
-
-                    colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
-                    colorControlsTable.rows[i].cells[1].children[0].children[0].value = "randomColor";
-                    colorControlsTable.rows[i].cells[1].children[0].children[0].appendChild(document.createTextNode("Generate Random Color"));
-
-                    colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
-                    colorControlsTable.rows[i].cells[1].children[0].children[1].value = "provideColor";
-                    colorControlsTable.rows[i].cells[1].children[0].children[1].appendChild(document.createTextNode("Provide a Color"));
-
-                    colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
-                    colorControlsTable.rows[i].cells[1].children[0].children[2].value = "varyColor";
-                    colorControlsTable.rows[i].cells[1].children[0].children[2].appendChild(document.createTextNode("Vary from Previous Color"));
-
-                    colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
-                    colorControlsTable.rows[i].cells[1].children[0].children[3].value = "flipRGB";
-                    colorControlsTable.rows[i].cells[1].children[0].children[3].appendChild(document.createTextNode("Flip RGB Values"));
-                }
             }
 
             function toggleControls(){
