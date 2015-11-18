@@ -14,6 +14,7 @@
         <input type="button" onClick="submit()" value="Generate Wallpaper">
         <input type="button" onClick="reset()" value="Reset">
         <input type="button" onClick="toggleControls()" value="Toggle Controls">
+        <input type="button" onClick="toggleColorControls()" value="Toggle Color Controls">
         <div id="controlsDiv" style="display: inline">
             <table>
                 <tr>
@@ -34,6 +35,7 @@
                 </tr>
             </table>
         </div>
+
         <div id="colorControlsDiv" style="display: inline">
             <br>
             Number of colors: <input type="text" id="numberOfColorsText" value="7"> <input type="button" onClick="setNumberOfColors()" value="Set">
@@ -52,6 +54,7 @@
             ctx = canv.getContext("2d");
 
             var numberOfColors;
+            var colorControlsTable = document.getElementById('colorControlsTable');
             function setNumberOfColors(){
                 numberOfColors = parseInt(document.getElementById('numberOfColorsText').value);
 
@@ -68,15 +71,38 @@
                     }
                 }
 
-                //for(i=0; i<numberOfColors; i++){
-                //    colorControlsTable.rows[i]
-                //}
+                for(i=0; i<numberOfColors; i++){
+                    colorControlsTable.rows[i].insertCell(1);
+                    colorControlsTable.rows[i].cells[1].appendChild(document.createElement("select"));
+                    colorControlsTable.rows[i].cells[1].children[0].id = "color" + i + "Select";
+
+                    colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
+                    colorControlsTable.rows[i].cells[1].children[0].children[0].value = "randomColor";
+                    colorControlsTable.rows[i].cells[1].children[0].children[0].appendChild(document.createTextNode("Generate Random Color"));
+
+                    colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
+                    colorControlsTable.rows[i].cells[1].children[0].children[1].value = "provideColor";
+                    colorControlsTable.rows[i].cells[1].children[0].children[1].appendChild(document.createTextNode("Provide a Color"));
+
+                    colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
+                    colorControlsTable.rows[i].cells[1].children[0].children[2].value = "varyColor";
+                    colorControlsTable.rows[i].cells[1].children[0].children[2].appendChild(document.createTextNode("Vary from Previous Color"));
+
+                    colorControlsTable.rows[i].cells[1].children[0].appendChild(document.createElement("option"));
+                    colorControlsTable.rows[i].cells[1].children[0].children[3].value = "flipRGB";
+                    colorControlsTable.rows[i].cells[1].children[0].children[3].appendChild(document.createTextNode("Flip RGB Values"));
+                }
             }
 
             function toggleControls(){
                 var controlsDiv = document.getElementById('controlsDiv');
                 if(controlsDiv.style.display == "inline") controlsDiv.style.display = "none";
                 else controlsDiv.style.display = "inline";
+            }
+            function toggleColorControls(){
+                var colorControlsDiv = document.getElementById('colorControlsDiv');
+                if(colorControlsDiv.style.display == "inline") colorControlsDiv.style.display = "none";
+                else colorControlsDiv.style.display = "inline";
             }
 
             //var color0 = "#" + Math.random().toString(16).slice(2, 8);
