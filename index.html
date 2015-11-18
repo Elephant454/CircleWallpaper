@@ -57,14 +57,14 @@
 
                 var colorControlsTable = document.getElementById('colorControlsTable');
                 if(colorControlsTable.rows.length < numberOfColors){
-                    for(i=colorControlsTable.rows.length; i<numberOfColors - colorControlsTable.rows.length; i++){
+                    for(i=colorControlsTable.rows.length; i<numberOfColors; i++){
                         colorControlsTable.insertRow(i);
                         colorControlsTable.rows[i].insertCell(0);
                         colorControlsTable.rows[i].cells[0].innerHTML = "color" + i;
                     }
                 }else if(colorControlsTable.rows.length > numberOfColors){
-                    for(i=colorControlsTable.rows.length; i>numberOfColors; i--){
-                        colorControlsTable.deleteRow(i);
+                    while(colorControlsTable.rows.length > numberOfColors){
+                        colorControlsTable.deleteRow(numberOfColors);
                     }
                 }
 
