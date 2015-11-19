@@ -43,8 +43,8 @@
                 <tr>
                     <td>color0</td>
                     <td>
-                        <select selected="randomColor">
-                            <option value="randomColor">Generate Random Color</option>
+                        <select>
+                            <option value="randomColor" selected>Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
                             <option value="varyColor">Vary from Previous Color</option>
                             <option value="flipRGB">Flip RGB Values</option>
@@ -57,11 +57,11 @@
                 <tr>
                     <td>color1</td>
                     <td>
-                        <select selected="flipRGB">
+                        <select>
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
                             <option value="varyColor">Vary from Previous Color</option>
-                            <option value="flipRGB">Flip RGB Values</option>
+                            <option value="flipRGB" selected>Flip RGB Values</option>
                         </select>
                     </td>
                     <td>
@@ -74,7 +74,7 @@
                         <select selected="varyColor">
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
-                            <option value="varyColor">Vary from Previous Color</option>
+                            <option value="varyColor" selected>Vary from Previous Color</option>
                             <option value="flipRGB">Flip RGB Values</option>
                         </select>
                     </td>
@@ -89,7 +89,7 @@
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
                             <option value="varyColor">Vary from Previous Color</option>
-                            <option value="flipRGB">Flip RGB Values</option>
+                            <option value="flipRGB" selected>Flip RGB Values</option>
                         </select>
                     </td>
                     <td>
@@ -102,12 +102,12 @@
                         <select>
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
-                            <option value="varyColor">Vary from Previous Color</option>
+                            <option value="varyColor" selected>Vary from Previous Color</option>
                             <option value="flipRGB">Flip RGB Values</option>
                         </select>
                     </td>
                     <td>
-                        <input type="text" id="color4Text">
+                        <input type="text" id="color4Text" value="64">
                     </td>
                 </tr>
                 <tr>
@@ -117,11 +117,11 @@
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
                             <option value="varyColor">Vary from Previous Color</option>
-                            <option value="flipRGB">Flip RGB Values</option>
+                            <option value="flipRGB" selected>Flip RGB Values</option>
                         </select>
                     </td>
                     <td>
-                        <input type="text" id="color5Text">
+                        <input type="text" id="color5Text" value="BGR">
                     </td>
                 </tr>
                 <tr>
@@ -130,12 +130,12 @@
                         <select>
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
-                            <option value="varyColor">Vary from Previous Color</option>
+                            <option value="varyColor" selected>Vary from Previous Color</option>
                             <option value="flipRGB">Flip RGB Values</option>
                         </select>
                     </td>
                     <td>
-                        <input type="text" id="color6Text">
+                        <input type="text" id="color6Text" value="64">
                     </td>
                 </tr>
             </table>
@@ -308,6 +308,10 @@
                     var colorAction = colorControlsTable.rows[i].cells[1].children[0].value;
                     if(colorAction == "randomColor"){
                        colors[i] = generateColor();
+                    }
+
+                    if(colorAction == ""){
+                    
                     }
                 }
 
