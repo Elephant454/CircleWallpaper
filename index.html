@@ -287,6 +287,7 @@
             var x;
             var y;
             var gradualGenerationInterval;
+            var colors;
 
             function submit(){
                 window.clearInterval(gradualGenerationInterval); //just to be certain that it isn't gradually generating. It should start over, if that's the case.
@@ -302,6 +303,13 @@
                 if(document.getElementById('instantlyRadio').checked) var generationType=0;
                 if(document.getElementById('graduallyRadio').checked) var generationType=1;
                 if(document.getElementById('semiGraduallyRadio').checked) var generationType=2;
+
+                for(i=0; i<colorControlsTable.rows.length; i++){
+                    var colorAction = colorControlsTable.rows[i].cells[1].children[0].value;
+                    if(colorAction == "randomColor"){
+                       //colors[i] = generateColor();
+                    }
+                }
 
                 var color0 = generateColor();
                 var color1 = flipRedBlue(color0)
