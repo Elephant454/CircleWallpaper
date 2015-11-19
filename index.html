@@ -219,7 +219,6 @@
             function reset(){
                 document.getElementById("startingSizeText").value="6";
                 document.getElementById("endingSizeText").value="8";
-                document.getElementById("varianceText").value="64";
                 document.getElementById("instantlyRadio").checked=true;
                 document.getElementById('widthText').value = window.innerWidth;
                 document.getElementById('heightText').value = window.innerHeight;
@@ -316,7 +315,6 @@
 
                 startingSize=parseInt(document.getElementById('startingSizeText').value);
                 endingSize=parseInt(document.getElementById('endingSizeText').value);
-                var variance=parseInt(document.getElementById('varianceText').value);
                 if(document.getElementById('instantlyRadio').checked) var generationType=0;
                 if(document.getElementById('graduallyRadio').checked) var generationType=1;
                 if(document.getElementById('semiGraduallyRadio').checked) var generationType=2;
