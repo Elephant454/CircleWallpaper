@@ -248,7 +248,6 @@
                 var max = Math.max(r, Math.max(g, b)); //largest value out of red, green, and blue
 
                 if(min == max) return([0, 0, min]); //if the color is white, black, or grey
-
             }
 
             //produces a random color
@@ -310,19 +309,30 @@
                        colors[i] = generateColor();
                     }
 
-                    if(colorAction == ""){
-                    
+                    if(colorAction == "provideColor"){
+                        colors[i] = document.getElementById("color" + i + "Text").value;
+                    }
+
+                    if(colorAction == "varyColor"){
+                        colors[i] = varyColor(colors[i-1], parseInt(document.getElementById("color" + i + "Text").value));
+                    }
+
+                    if(colorAction == "flipRGB"){
+                        var color = "#";
+                        if(document.getElementById("color" + i + "Text").value.slice(0,1) == "R") color += getRed(colors[i-1]);
+                        if(document.getElementById("color" + i + "Text").value.slice(0,1) == "G") color += getGreen(colors[i-1]);
+                        if(document.getElementById("color" + i + "Text").value.slice(0,1) == "B") color += getBlue(colors[i-1]);
+
+                        if(document.getElementById("color" + i + "Text").value.slice(1,2) == "R") color += getRed(colors[i-1]);
+                        if(document.getElementById("color" + i + "Text").value.slice(1,2) == "G") color += getGreen(colors[i-1]);
+                        if(document.getElementById("color" + i + "Text").value.slice(1,2) == "B") color += getBlue(colors[i-1]);
+
+                        if(document.getElementById("color" + i + "Text").value.slice(2,3) == "R") color += getRed(colors[i-1]);
+                        if(document.getElementById("color" + i + "Text").value.slice(2,3) == "G") color += getGreen(colors[i-1]);
+                        if(document.getElementById("color" + i + "Text").value.slice(2,3) == "B") color += getBlue(colors[i-1]);
+                        colors[i] = color;
                     }
                 }
-
-                var color0 = generateColor();
-                var color1 = flipRedBlue(color0)
-                var color2 = varyColor(color1, variance);
-                var color3 = flipRedBlue(color2);
-                var color4 = varyColor(color3, variance);
-                var color5 = flipRedBlue(color4);
-                var color6 = varyColor(color5, variance);
-                //colors = [color0, color1, color2, color3, color4, color5, color6];
 
                 average = averageColor([averageColor(colors), "#ffffff"]);
                 ctx.fillStyle = average;
