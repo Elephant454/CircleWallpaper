@@ -187,7 +187,7 @@
 
                         colorControlsTable.rows[i].insertCell(2);
                         colorControlsTable.rows[i].cells[2].appendChild(document.createElement("input"));
-                        colorControlsTable.rows[i].cells[2].children[0].children[0].type = "text";
+                        colorControlsTable.rows[i].cells[2].children[0].type = "text";
                         colorControlsTable.rows[i].cells[2].children[0].id = "color" + i + "Text";
                     }
                 }else if(colorControlsTable.rows.length > numberOfColors){
@@ -287,7 +287,7 @@
             var x;
             var y;
             var gradualGenerationInterval;
-            var colors;
+            var colors = [];
 
             function submit(){
                 window.clearInterval(gradualGenerationInterval); //just to be certain that it isn't gradually generating. It should start over, if that's the case.
@@ -307,7 +307,7 @@
                 for(i=0; i<colorControlsTable.rows.length; i++){
                     var colorAction = colorControlsTable.rows[i].cells[1].children[0].value;
                     if(colorAction == "randomColor"){
-                       //colors[i] = generateColor();
+                       colors[i] = generateColor();
                     }
                 }
 
@@ -318,7 +318,7 @@
                 var color4 = varyColor(color3, variance);
                 var color5 = flipRedBlue(color4);
                 var color6 = varyColor(color5, variance);
-                colors = [color0, color1, color2, color3, color4, color5, color6];
+                //colors = [color0, color1, color2, color3, color4, color5, color6];
 
                 average = averageColor([averageColor(colors), "#ffffff"]);
                 ctx.fillStyle = average;
@@ -345,7 +345,7 @@
                         for(x=size; x<width; x+=size*2){
                             ctx.beginPath();
                             ctx.arc(x, y, size, 0, 2*Math.PI);
-                            if(steps<6){
+                            if(steps<colors.length){
                                 steps++;
                             }else{
                                 steps=0;
@@ -361,7 +361,7 @@
             function generateGradually(){
                 ctx.beginPath();
                 ctx.arc(x, y, size, 0, 2*Math.PI);
-                if(steps<6) steps++;
+                if(steps<colors.length) steps++;
                 else steps=0;
                 ctx.strokeStyle=colors[steps];
                 ctx.stroke();
@@ -389,7 +389,7 @@
                     for(x=size; x<width; x+=size*2){
                         ctx.beginPath();
                         ctx.arc(x, y, size, 0, 2*Math.PI);
-                        if(steps<6) steps++;
+                        if(steps<colors.length) steps++;
                         else steps=0;
                         ctx.strokeStyle=colors[steps];
                         ctx.stroke();
