@@ -12,7 +12,8 @@
         </style>
 
         <input type="button" onClick="submit()" value="Generate Wallpaper">
-        <input type="button" onClick="reset()" value="Reset">
+        <input type="button" onClick="reset()" value="Reset Controls">
+        <input type="button" onClick="resetColorControls()" value="Reset Color Controls">
         <input type="button" onClick="toggleControls()" value="Toggle Controls">
         <input type="button" onClick="toggleColorControls()" value="Toggle Color Controls">
         <div id="controlsDiv" style="display: inline">
@@ -43,7 +44,7 @@
                 <tr>
                     <td>color0</td>
                     <td>
-                        <select>
+                        <select id="color0Select">
                             <option value="randomColor" selected>Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
                             <option value="varyColor">Vary from Previous Color</option>
@@ -57,7 +58,7 @@
                 <tr>
                     <td>color1</td>
                     <td>
-                        <select>
+                        <select id="color1Select">
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
                             <option value="varyColor">Vary from Previous Color</option>
@@ -71,7 +72,7 @@
                 <tr>
                     <td>color2</td>
                     <td>
-                        <select selected="varyColor">
+                        <select id="color2Select">
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
                             <option value="varyColor" selected>Vary from Previous Color</option>
@@ -85,7 +86,7 @@
                 <tr>
                     <td>color3</td>
                     <td>
-                        <select selected="flipRGB">
+                        <select id="color3Select">
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
                             <option value="varyColor">Vary from Previous Color</option>
@@ -99,7 +100,7 @@
                 <tr>
                     <td>color4</td>
                     <td>
-                        <select>
+                        <select id="color4Select">
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
                             <option value="varyColor" selected>Vary from Previous Color</option>
@@ -113,7 +114,7 @@
                 <tr>
                     <td>color5</td>
                     <td>
-                        <select>
+                        <select id="color5Select">
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
                             <option value="varyColor">Vary from Previous Color</option>
@@ -127,7 +128,7 @@
                 <tr>
                     <td>color6</td>
                     <td>
-                        <select>
+                        <select id="color6Select">
                             <option value="randomColor">Generate Random Color</option>
                             <option value="provideColor">Provide a Color</option>
                             <option value="varyColor" selected>Vary from Previous Color</option>
@@ -225,6 +226,26 @@
                 document.getElementById("instantlyRadio").checked=true;
                 document.getElementById('widthText').value = window.innerWidth;
                 document.getElementById('heightText').value = window.innerHeight;
+            }
+            function resetColorControls(){
+                document.getElementById('numberOfColorsText').value = "7";
+                setNumberOfColors();
+
+                document.getElementById('color0Select').children[0].select = true;
+                document.getElementById('color1Select').children[3].select = true;
+                document.getElementById('color2Select').children[2].select = true;
+                document.getElementById('color3Select').children[3].select = true;
+                document.getElementById('color4Select').children[2].select = true;
+                document.getElementById('color5Select').children[3].select = true;
+                document.getElementById('color6Select').children[2].select = true;
+
+                document.getElementById('color0Text').value = "";
+                document.getElementById('color1Text').value = "BGR";
+                document.getElementById('color2Text').value = "64";
+                document.getElementById('color3Text').value = "BGR";
+                document.getElementById('color4Text').value = "64";
+                document.getElementById('color5Text').value = "BGR";
+                document.getElementById('color6Text').value = "64";
             }
 
             //gets the red of a color
